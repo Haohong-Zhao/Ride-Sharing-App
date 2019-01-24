@@ -13,7 +13,7 @@ def login(request):
             auth.login(request, user)
             messages.success(request, 'You are now logged in')
             return redirect('dashboard')
-            
+
         else:
             messages.error(request, 'Invalid credential')
             return redirect('login')
@@ -51,7 +51,10 @@ def register(request):
         return render(request, 'accounts/register.html')
 
 def logout(request):
-    return redirect('index')
+    if request.method == 'POST':
+        auth.logout(request)
+        messages.success(request, 'You have successfully logged out')
+        return redirect('index')
 
 def dashboard(request):
     return render(request, 'accounts/dashboard.html')
