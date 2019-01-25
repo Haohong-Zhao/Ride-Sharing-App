@@ -64,5 +64,6 @@ def dashboard(request):
         context = {
             'contacts': contacts
         }
+        
         return render(request, 'accounts/dashboard.html', context)
 
